@@ -1,6 +1,6 @@
 #include <iostream>
 #include <raylib.h>
-#include "EsDecrementable.h"
+#include "./Escenas/EsDecrementable.h"
 
 GameScreen currentScreen;
 Scene* gameScenes[3] = {0};

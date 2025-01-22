@@ -7,6 +7,7 @@ void Scene::ManageInterruptions(){
         OnMouseDown();
     }
     mousePosition = GetMousePosition();
+    OnKeyPressed((KeyboardKey)GetKeyPressed());
 };
 
 void Scene::UpdateScreen(){
@@ -123,10 +124,6 @@ void Logo::DrawScreen()
 };
 
 Tittle::Tittle(Font f) : font{ f } {};
-
-void Tittle::InitScene(){
-    
-}
 
 void Tittle::UpdateScreen() {
     Scene::UpdateScreen();

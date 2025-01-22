@@ -63,10 +63,10 @@ class Tittle : public Scene {
 	
 public:
 	Tittle(Font f);
-	void InitScene();
+	void InitScene() {finishScreen = UNKNOWN;};
 	void UpdateScreen() override;
 	void DrawScreen();
-	void UnloadScreen() {};
+	void UnloadScreen() {finishScreen = UNKNOWN;};
 	void OnMouseDown();
-	void OnKeyPressed(KeyboardKey) {}
+	void OnKeyPressed(KeyboardKey) {};
 };

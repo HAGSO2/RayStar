@@ -73,6 +73,8 @@ void Gameplay::DrawScreen()
 };
 
 void Gameplay::OnKeyPressed(KeyboardKey k){
-    
+    if(k == KEY_BACKSPACE){
+        finishScreen = TITTLE;
+    }
 }
 

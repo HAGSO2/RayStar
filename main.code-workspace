@@ -13,6 +13,19 @@
 			"*.m": "c"
 		},
 		"makefile.configureOnOpen": true,
-		"makefile.makefilePath": "make"
+		"makefile.makefilePath": "./Makefile",
+		"makefile.launchConfigurations": [
+			{
+				"cwd": "/home/angel/Escritorio/RayEstrella2/RayEstrella",
+				"binaryPath": "/home/angel/Escritorio/RayEstrella2/RayEstrella/FirstC++RayTest",
+				"binaryArgs": []
+			},
+			{
+				"cwd": "/home/angel/Escritorio/RayEstrella",
+				"binaryPath": "/home/angel/Escritorio/RayEstrella/FirstC++RayTest",
+				"binaryArgs": []
+			}
+		],
+		"makefile.buildLog": "./Log.txt"
 	}
 }

@@ -1,5 +1,5 @@
-#include "Scene.h"
-#include "GameObject.h"
+#include "../Motor/Scene.h"
+#include "../Motor/GameObject.h"
 
 #pragma once
 #pragma region Definitions
