@@ -1,5 +1,5 @@
-#include "Scene.h"
-#include "GameObject.h"
+#include "../Motor/Scene.h"
+#include "../Motor/GameObject.h"
 
 #pragma once
 #pragma region Definitions
@@ -36,7 +36,7 @@ struct Node{
 };
 
 class Gameplay : public Scene{
-    UI canvas;
+    UI<Gameplay> canvas;
     Node nodes[CELL_Y][CELL_X];
     Sprite* cells[CELL_Y][CELL_X];
 
