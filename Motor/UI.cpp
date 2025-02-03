@@ -8,8 +8,8 @@ void UI::AddButton(float x, float y, float width, float height, char* s, Color c
     elements.push_back(new SceneButton(x,y,width,height, s, c, Func, meptr));
 };
 
-void UI::AddTextBox(float x, float y, float width, float height, char* s, bool & enter){
-    elements.push_back(new TextBox(x, y, width, height,s, enter));
+void UI::AddTextBox(float x, float y, float width, float height, char* s, bool & enter, bool & selec){
+    elements.push_back(new TextBox(x, y, width, height,s, enter, selec));
 }
 
 bool UIElement::IsInside(Vector2 mouseButton){ return CheckCollisionPointRec(mouseButton,area);}
@@ -25,12 +25,13 @@ void UI::UpdateScreen(Vector2 mouseposition){
     TraceLog(LOG_ALL,"Comprobando...");
     while (i < elements.size() && !elements[i]->IsInside(mouseposition))
     {
+        elements[i]->IsOut();
         i++;
     }
     if(i < elements.size())
         elements[i]->UpdateScreen(mouseposition);
     
-}
+};
 
 SceneButton::SceneButton(float x, float y, float width, float height, char* s, Color c, void (*Func)(GameScreen & variable), GameScreen & meptr)
 : texto{s}, color{c}, ClickFunc{Func}, UIElement(x,y,width,height), ptr{meptr}
@@ -45,19 +46,21 @@ void SceneButton::UpdateScreen(Vector2 mouseposition){
     ClickFunc(ptr);
 };
 
-TextBox::TextBox(float x, float y, float width, float height, char* s, bool &enter): container{s}, enterPressed{enter}
+TextBox::TextBox(float x, float y, float width, float height, char* s, bool &enter, bool & selec): container{s}, enterPressed{enter}, selected{selec}
 , UIElement(x,y,width,height) {};
 
 void TextBox::Draw(){
     DrawRectangleRec(area,WHITE);
     DrawText(container,area.x,area.y,12,BLACK);
-}
+};
 
 void TextBox::UpdateKeyboard(KeyboardKey k){
     if(k == KEY_KP_ENTER){
-        enterPressed = true;
+        if(selected)
+            enterPressed = true;
     }
     else{
-        container += k;
+        if(selected)
+            container += k;
     }
-}
+};

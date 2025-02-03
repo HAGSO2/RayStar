@@ -14,6 +14,7 @@ protected:
 public:
     UIElement(float x, float y, float width, float height);
     bool IsInside(Vector2);
+    virtual void IsOut();
     virtual void Draw() = 0;
     virtual void UpdateScreen(Vector2) = 0;
     virtual void UpdateKeyboard(KeyboardKey) = 0;
@@ -24,7 +25,7 @@ class UI{ //Canvas
     public:
     UI();
     void AddButton(float x, float y, float width, float height, char* s, Color c, void (*Func)(GameScreen & variable), GameScreen &meptr);
-    void AddTextBox(float x, float y, float width, float height, char* s, bool & enter);
+    void AddTextBox(float x, float y, float width, float height, char* s, bool & enter, bool & selec);
     void Draw();
     void UpdateScreen(Vector2);
     void UpdateKeyboard(KeyboardKey);
@@ -42,6 +43,7 @@ class SceneButton : public UIElement{
     void Draw();
     private:
     //void (*funcPtr)()
+    void IsOut(){};
     void (*ClickFunc)(GameScreen &);
     void UpdateScreen(Vector2);
     void UpdateKeyboard(KeyboardKey){};
@@ -50,11 +52,12 @@ class SceneButton : public UIElement{
 class TextBox: public UIElement{
     char* container;
     bool &enterPressed;
+    bool &selected;
 
     public:
-    TextBox(float x, float y, float width, float height, char* s, bool & enter);
+    TextBox(float x, float y, float width, float height, char* s, bool & enter, bool & selec);
+    void IsOut() {selected = false;}
     void Draw();
-    void UpdateScreen(Vector2) {};
+    void UpdateScreen(Vector2) {selected = true;};
     void UpdateKeyboard(KeyboardKey);
-    void (*ClickFunc)();
 };
