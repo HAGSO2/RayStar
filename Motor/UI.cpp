@@ -1,10 +1,15 @@
 #include "UI.h"
 
+#pragma region  Comun
 UI::UI(){};
 
 UIElement::UIElement(float x, float y, float width, float height) : area(Rectangle{x,y,width,height}){};
 
-void UI::AddButton(float x, float y, float width, float height, char* s, Color c, void (*Func)(GameScreen & variable), GameScreen & meptr){
+void UI::AddButton(float x, float y, float width, float height, char* s, Color c, void (*Func)(void*), void* ptr){
+    elements.push_back(new Button(x,y,width,height,s,c,Func,ptr));
+}
+
+void UI::AddButtonScene(float x, float y, float width, float height, char* s, Color c, void (*Func)(GameScreen & variable), GameScreen & meptr){
     elements.push_back(new SceneButton(x,y,width,height, s, c, Func, meptr));
 };
 
@@ -36,6 +41,31 @@ void UI::UpdateScreen(Vector2 mouseposition){
 void UI::UpdateKeyboard(KeyboardKey k){
     for(int i = 0; i< elements.size(); i++){elements[i]->UpdateKeyboard(k);};
 };
+
+#pragma endregion
+
+CallBack::CallBack(void (*Func)(void*), void* miptrs): ClickFunk{Func}, ptr{miptrs}{};
+
+#pragma region Botón
+
+Button::Button(float x, float y, float width, float height, char* s, Color c, void (*Func)(void*), void* miptr):
+UIElement(x,y,width,height), texto{s}, color{c}
+, callback{CallBack(Func, miptr)}
+{
+    // ClickFunk = Func;
+    // ptr = miptr;
+}
+
+void Button::Draw(){
+    DrawRectangleRec(area, color);
+    DrawText(texto, area.x, area.y, 12, BLACK);
+};
+
+void Button::UpdateScreen(Vector2 p){
+    callback.Execute();
+}
+
+#pragma endregion
 
 SceneButton::SceneButton(float x, float y, float width, float height, char* s, Color c, void (*Func)(GameScreen & variable), GameScreen & meptr)
 : texto{s}, color{c}, ClickFunc{Func}, UIElement(x,y,width,height), ptr{meptr}

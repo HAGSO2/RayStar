@@ -18,4 +18,6 @@ class EsDecrementable : public Scene{
     void OnMouseDown();
     void OnKeyPressed(KeyboardKey);
 
+    int ReturnInt(){return 1;};
+
 };

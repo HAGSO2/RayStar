@@ -11,8 +11,8 @@ void ToDecrementable(GameScreen & ptr){
 Tittle::Tittle(Font f) : font{ f } 
 {
     canvas = UI();
-    canvas.AddButton(screenWidth/2,screenHeight/2,80,60, "Gameplay", WHITE, ToGameplay, finishScreen);
-    canvas.AddButton(screenWidth/2,screenHeight/2 + 70,100,60, "Cola decrementable", WHITE, ToDecrementable, finishScreen);
+    canvas.AddButtonScene(screenWidth/2,screenHeight/2,80,60, "Gameplay", WHITE, ToGameplay, finishScreen);
+    canvas.AddButtonScene(screenWidth/2,screenHeight/2 + 70,100,60, "Cola decrementable", WHITE, ToDecrementable, finishScreen);
     // canvas.AddButton(screenWidth/2,screenHeight/2-70,80,60, "Decrementable", WHITE,{});
     
 };

@@ -24,12 +24,34 @@ class UI{ //Canvas
     vector<UIElement*> elements;
     public:
     UI();
-    void AddButton(float x, float y, float width, float height, char* s, Color c, void (*Func)(GameScreen & variable), GameScreen &meptr);
+    void AddButton(float x, float y, float width, float height, char* s, Color c, void (*Func)(void*), void* miptr);
+    void AddButtonScene(float x, float y, float width, float height, char* s, Color c, void (*Func)(GameScreen & variable), GameScreen &meptr);
     void AddTextBox(float x, float y, float width, float height, string& s, bool & enter, bool & selec);
     void Draw();
     void UpdateScreen(Vector2);
     void UpdateKeyboard(KeyboardKey);
 
+};
+
+class CallBack{
+    void* ptr;
+    void (*ClickFunk)(void*);
+    public:
+    CallBack(void (*Func)(void*), void* miptrs);
+    void Execute() {ClickFunk(ptr);}
+};
+
+class Button : public UIElement{
+    char* texto;
+    Color color;
+    CallBack callback;
+
+    public:
+    Button(float x, float y, float width, float height, char* s, Color c, void (*Func)(void*), void* miptrs);
+    void Draw();
+    void IsOut(){};
+    void UpdateScreen(Vector2);
+    void UpdateKeyboard(KeyboardKey){};
 };
 
 class SceneButton : public UIElement{
