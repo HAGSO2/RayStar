@@ -1,18 +1,18 @@
 #include "Tittle.h"
 
-void ToGameplay(GameScreen & ptr){
-    ptr = GAMEPLAY;
+void ToGameplay(void* ptr){
+    ((Tittle*)ptr)->ChangeScene(GAMEPLAY);
 };
 
-void ToDecrementable(GameScreen & ptr){
-    ptr = DECREMENTABLE;
+void ToDecrementable(void* ptr){
+    ((Tittle*)ptr)->ChangeScene(DECREMENTABLE);
 };
 
 Tittle::Tittle(Font f) : font{ f } 
 {
     canvas = UI();
-    canvas.AddButtonScene(screenWidth/2,screenHeight/2,80,60, "Gameplay", WHITE, ToGameplay, finishScreen);
-    canvas.AddButtonScene(screenWidth/2,screenHeight/2 + 70,100,60, "Cola decrementable", WHITE, ToDecrementable, finishScreen);
+    canvas.AddButton(screenWidth/2,screenHeight/2,80,60, "Gameplay", WHITE, ToGameplay, this);
+    canvas.AddButton(screenWidth/2,screenHeight/2 + 70,100,60, "Cola decrementable", WHITE, ToDecrementable, this);
     // canvas.AddButton(screenWidth/2,screenHeight/2-70,80,60, "Decrementable", WHITE,{});
     
 };

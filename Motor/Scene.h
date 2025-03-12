@@ -25,6 +25,8 @@ public:
 	virtual void OnMouseDown() = 0;
 	virtual void OnKeyPressed(KeyboardKey) = 0;
 
+	void ChangeScene(GameScreen sc){finishScreen = sc;}
+
 private:
 	void ManageInterruptions();
 	

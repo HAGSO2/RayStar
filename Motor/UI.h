@@ -14,7 +14,7 @@ protected:
 public:
     UIElement(float x, float y, float width, float height);
     bool IsInside(Vector2);
-    virtual void IsOut() = 0;
+    virtual void SetOut() = 0;
     virtual void Draw() = 0;
     virtual void UpdateScreen(Vector2) = 0;
     virtual void UpdateKeyboard(KeyboardKey) = 0;
@@ -26,7 +26,7 @@ class UI{ //Canvas
     UI();
     void AddButton(float x, float y, float width, float height, char* s, Color c, void (*Func)(void*), void* miptr);
     void AddButtonScene(float x, float y, float width, float height, char* s, Color c, void (*Func)(GameScreen & variable), GameScreen &meptr);
-    void AddTextBox(float x, float y, float width, float height, string& s, bool & enter, bool & selec);
+    void AddTextBox(float x, float y, float width, float height);
     void Draw();
     void UpdateScreen(Vector2);
     void UpdateKeyboard(KeyboardKey);
@@ -49,37 +49,22 @@ class Button : public UIElement{
     public:
     Button(float x, float y, float width, float height, char* s, Color c, void (*Func)(void*), void* miptrs);
     void Draw();
-    void IsOut(){};
+    void SetOut() {};
     void UpdateScreen(Vector2);
     void UpdateKeyboard(KeyboardKey){};
 };
 
-class SceneButton : public UIElement{
-    char* texto;
-    Color color;
-    GameScreen &ptr;
-    
-    
-    public:
-    SceneButton(float x, float y, float width, float height, char* s, Color c, void (*Func)(GameScreen & variable), GameScreen &meptr);
-    void Draw();
-    private:
-    //void (*funcPtr)()
-    void IsOut(){};
-    void (*ClickFunc)(GameScreen &);
-    void UpdateScreen(Vector2);
-    void UpdateKeyboard(KeyboardKey){};
-};
-
+#define NO_SELECCIONADO ORANGE
+#define SELECCIONADO GREEN
 class TextBox: public UIElement{
-    string &container;
-    bool &enterPressed;
-    bool &selected;
+    string texto;
+    bool seleccionado;
 
     public:
-    TextBox(float x, float y, float width, float height, string& s, bool & enter, bool & selec);
-    void IsOut() {selected = false;}
+    TextBox(float x, float y, float width, float height);
     void Draw();
-    void UpdateScreen(Vector2) {selected = !selected; WaitTime(0.1f);};
+    void SetOut() {seleccionado = false;};
+    void UpdateScreen(Vector2) ;
     void UpdateKeyboard(KeyboardKey);
 };
+

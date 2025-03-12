@@ -9,13 +9,11 @@ void UI::AddButton(float x, float y, float width, float height, char* s, Color c
     elements.push_back(new Button(x,y,width,height,s,c,Func,ptr));
 }
 
-void UI::AddButtonScene(float x, float y, float width, float height, char* s, Color c, void (*Func)(GameScreen & variable), GameScreen & meptr){
-    elements.push_back(new SceneButton(x,y,width,height, s, c, Func, meptr));
-};
+void UI::AddTextBox(float x, float y, float width, float height)
+ {
+    elements.push_back(new TextBox(x,y,width,height));
+ };
 
-void UI::AddTextBox(float x, float y, float width, float height, string& s, bool & enter, bool & selec){
-    elements.push_back(new TextBox(x, y, width, height,s, enter, selec));
-}
 
 bool UIElement::IsInside(Vector2 mouseButton){ return CheckCollisionPointRec(mouseButton,area);}
 
@@ -30,11 +28,19 @@ void UI::UpdateScreen(Vector2 mouseposition){
     // TraceLog(LOG_ALL,"Comprobando...");
     while (i < elements.size() && !elements[i]->IsInside(mouseposition))
     {
-        elements[i]->IsOut();
+        elements[i]->SetOut();
         i++;
     }
-    if(i < elements.size())
+    if(i < elements.size()){
         elements[i]->UpdateScreen(mouseposition);
+        i++;
+    }
+    while (i < elements.size())
+    {
+        elements[i]->SetOut();
+        i++;
+    }
+    
     
 };
 
@@ -67,42 +73,27 @@ void Button::UpdateScreen(Vector2 p){
 
 #pragma endregion
 
-SceneButton::SceneButton(float x, float y, float width, float height, char* s, Color c, void (*Func)(GameScreen & variable), GameScreen & meptr)
-: texto{s}, color{c}, ClickFunc{Func}, UIElement(x,y,width,height), ptr{meptr}
-{};
+#pragma region TextBox
 
-void SceneButton::Draw(){
-    DrawRectangleRec(area, color);
-    DrawText(texto, area.x, area.y, 12, BLACK);
-};
-
-void SceneButton::UpdateScreen(Vector2 mouseposition){
-    ClickFunc(ptr);
-};
-
-TextBox::TextBox(float x, float y, float width, float height, string& s, bool &enter, bool & selec): container{s}, enterPressed{enter}, selected{selec}
-, UIElement(x,y,width,height) {};
+TextBox::TextBox(float x, float y, float width, float height): 
+UIElement(x,y,width,height), seleccionado{false}, texto{""} {};
 
 void TextBox::Draw(){
-    if(!selected)
-        DrawRectangleRec(area,ORANGE);
+    if(!seleccionado)
+        DrawRectangleRec(area, NO_SELECCIONADO);
     else
-        DrawRectangleRec(area,GREEN);
-    DrawText(container.c_str(),area.x,area.y,12,BLACK);
+        DrawRectangleRec(area, SELECCIONADO);
+    DrawText(texto.c_str(), area.x, area.y, 12, BLACK);
 };
 
+void TextBox::UpdateScreen(Vector2){
+    seleccionado = true;
+}
+
 void TextBox::UpdateKeyboard(KeyboardKey k){
-    if(k == KEY_KP_ENTER){
-        if(selected)
-            enterPressed = true;
+    if(seleccionado && KEY_A <= k && k <= KEY_Z){
+        texto.push_back((char)k);
     }
-    else{
-        if(selected)
-        {
-            if(k != KEY_BACKSPACE)
-                container.push_back((char)k);
-            else
-                container.erase(container.length()-1);
-        }
-    }
-};
+}
+
+#pragma endregion

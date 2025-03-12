@@ -6,6 +6,7 @@
 class EsDecrementable : public Scene{
     string lenth;
     ColaCasillas cola;
+    int velocidad = 1;
 
     bool canvasUpdate;
     bool selected;
@@ -19,5 +20,11 @@ class EsDecrementable : public Scene{
     void OnKeyPressed(KeyboardKey);
 
     int ReturnInt(){return 1;};
+
+    private:
+    void InsertaElemento(char* nombre, int prio);
+    void CambiaElemento(char* nombre, int prio);
+    void EliminaElemento(char* nombre);
+    void CambiaVelocidad(int vel) {velocidad = vel;}
 
 };

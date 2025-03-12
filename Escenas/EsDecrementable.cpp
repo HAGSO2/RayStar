@@ -1,14 +1,15 @@
 #include "EsDecrementable.h"
 
-void Ding(void* ptr){
-    TraceLog(LOG_ALL,"Ding: %d",((EsDecrementable*)ptr)->ReturnInt());
+void ActualizaEscena(void* ptr){
+    TraceLog(LOG_ALL,"Actualizando...");
 };
 
 EsDecrementable::EsDecrementable(string& ref): lenth{""}, Scene(), canvasUpdate{false}, selected{false}, cola{ColaCasillas(10)}
 {
-    canvas.AddTextBox(0,0,80,60,lenth,canvasUpdate,selected);
-    canvas.AddTextBox(0,65,80,60,lenth,canvasUpdate,selected);
-    canvas.AddButton(90,0,80,60,"Ding!",RED,Ding,this);
+    canvas.AddTextBox(0,0,80,60);
+    canvas.AddTextBox(0,65,80,60);
+    canvas.AddTextBox(0,130,80,60);
+    canvas.AddButton(90,0,80,60,"Actualizar",RED,ActualizaEscena,this);
 };
 
 void EsDecrementable::DrawScreen(){
