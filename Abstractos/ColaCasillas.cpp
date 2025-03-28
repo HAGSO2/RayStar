@@ -1,13 +1,17 @@
 #include "ColaCasillas.h"
+#include <raylib.h>
+using namespace std;
 
 ColaCasillas::ColaCasillas(int max):ultimo{1}, monticulo{vector<pair<int,float>>(salto)}, posiciones{vector<int>(max+1,-1)}{}
 
 void ColaCasillas::Añadir(int elem, float w){
     if((int)monticulo.size() == ultimo+1)
         Alargar();
-    ultimo++;
+    TraceLog(LOG_DEBUG, "BAM!");
     monticulo[ultimo] = pair<int,float>(elem,w);
     posiciones[elem] = Flotar(ultimo);
+    TraceLog(LOG_DEBUG, "BUM!");
+    ultimo++;
 };
 
 void ColaCasillas::Alargar(){
@@ -58,17 +62,33 @@ int ColaCasillas::Hundir(int i){
 };
 
 int ColaCasillas::Flotar(int i){
-    if(i == 1)
-        return 1;
-
+    TraceLog(LOG_DEBUG, "Flotando desde %d",i);
+    //¡Flota varias veces sin motivo!
     int padre = i/2;
-    if(monticulo[padre].second > monticulo[i].second){
+    if(i == 1){
+        return 1;
+    }
+    else if(monticulo[padre].second > monticulo[i].second){
         posiciones[monticulo[padre].second] = i;
         pair<int,float> aux = monticulo[padre];
         monticulo[padre] = monticulo[i];
         monticulo[i] = aux;
         return Flotar(padre);
     }
-
-    return i;
+    else{
+        return i;
+    }
+    
 };
+
+string ColaCasillas::ToString(){
+    string queue = "Montículo: \n";
+    for(int i = 0; i < monticulo.size(); i++){
+        queue.append( to_string(monticulo[i].first) + "|" + to_string(monticulo[i].second) + "\n");
+    }
+    queue.append("Posiciones: \n");
+    for(int i = 0; i < posiciones.size(); i++){
+        queue.append( to_string(i) + "|" + to_string(posiciones[i]) + "\n");
+    }
+    return queue;
+}

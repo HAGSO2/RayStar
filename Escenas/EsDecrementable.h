@@ -8,14 +8,13 @@
 //El tamaño de la cola debe ser tan grande como posibilidades de elementos puede tener.
 //Es decir que si en la cola voy a meter letras, la cola debe ser tan grande para meterlas a todas.
 class EsDecrementable : public Scene{
-    const char* minimoLetra = "a";
+    const char minimoLetra = 'A';
     string fixedText[3] = {"Insertar elemento", "Cambiar elemento", "Eliminar elemento"};
     string alltext[5] = {"","","","",""};
     ColaCasillas cola;
     TextShape* casillas[CASILLAS];
     int velocidad = 1;
 
-    bool canvasUpdate;
     bool selected;
     public:
     EsDecrementable();
@@ -26,15 +25,19 @@ class EsDecrementable : public Scene{
     void OnMouseDown();
     void OnKeyPressed(KeyboardKey);
 
-    int ReturnInt(){return 1;};
+    // int ReturnInt(){return 1;};
 
-    //El los parámetros de estos métodos se encuentran en el array de alltext
-    //por lo que no es necesario que tengan parámetros al llamarlos.
+    // //El los parámetros de estos métodos se encuentran en el array de alltext
+    // //por lo que no es necesario que tengan parámetros al llamarlos.
     void InsertaElemento();
     void CambiaElemento();
     void EliminaElemento();
 
     void ActualizaActores();
+
+    string DevuelveCola() {return cola.ToString();}
+
+    void RessetText();
 
     private:
     void InsertaElemento(const char* nombre, int prio);

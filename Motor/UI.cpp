@@ -69,6 +69,7 @@ void Button::Draw(){
 
 void Button::UpdateScreen(Vector2 p){
     callback.Execute();
+    WaitTime(0.1f);
 }
 
 #pragma endregion
@@ -86,14 +87,25 @@ void TextBox::Draw(){
     DrawText(texto.c_str(), area.x, area.y, 12, BLACK);
 };
 
-void TextBox::UpdateScreen(Vector2){
+void TextBox::UpdateScreen(Vector2 mouseposition){
     seleccionado = true;
 }
 
 void TextBox::UpdateKeyboard(KeyboardKey k){
-    if(seleccionado && KEY_A <= k && k <= KEY_Z ||
-        KEY_KP_0 <= k && k <= KEY_KP_9){
-        texto.push_back((char)k);
+    //bool shift = IsKeyDown(KEY_LEFT_SHIFT) || IsKeyDown(KEY_RIGHT_SHIFT);
+    if(seleccionado && (
+    (KEY_A <= k && k <= KEY_Z) || 
+    (KEY_0 <= k && KEY_9 <= k) ||
+    (KEY_KP_0 <= k && k <= KEY_KP_9)))
+    {
+        TraceLog(LOG_ALL,"%d",(int)k);
+        if(k > 320 && k < 329){
+            texto.push_back((char)k-272);
+        }
+        else{
+            texto.push_back((char)k);
+        }
+        
     }
 }
 

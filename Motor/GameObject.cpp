@@ -19,3 +19,5 @@ void TextShape::DrawObject(){
 };
 
 void TextShape::ChangeColor(Color c) {color = c;}
+
+void TextShape::ChangeText(string newText) {text = newText;}

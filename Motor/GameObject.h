@@ -29,5 +29,6 @@ class TextShape : public GameObject{
     public:
     TextShape(float x, float y, float width, float height, string txt, Color col);
     void ChangeColor(Color c);
+    void ChangeText(string newText);
     void DrawObject();
 };

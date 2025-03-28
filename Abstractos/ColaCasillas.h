@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <string>
 
 using namespace std;
 
@@ -7,10 +8,6 @@ using namespace std;
 
 
 class ColaCasillas{
-    //Aquí hay dos tipos de índices, el externo y el interno
-    //El índice externo es el que define un elemento en el array externo
-    //El índice interno es el que define en el vector de posiciones dónde está situado
-    // vector<pair<pair<int,int>,float>> monticulo;
     //Donde float es el peso del elemento en el montículo
     //Donde int es la posición del array de posiciones
     vector<pair<int,float>> monticulo;
@@ -19,6 +16,7 @@ class ColaCasillas{
     //saber la posición de un elemento i en el montículo hay que ir a posiciones[i].
     //Cada vez que la posición cambie, hay que cambiarla de aquí
     vector<int> posiciones;
+    //cuando esto esté funcionando, para mayor eficiencia esto podría ser un array
     int ultimo;
 public:
     ColaCasillas(int t);
@@ -29,6 +27,7 @@ public:
     void Eliminar(int elem);
     int Cambiar(int ind, float w);
     int MirarMínimo();
+    string ToString();
 private:
     void Alargar();
     int Flotar(int i);

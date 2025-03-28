@@ -11,7 +11,6 @@ class Scene {
 protected:
 	GameScreen finishScreen;
 	Vector2 mousePosition;
-	bool canvasUpdate;
 	UI canvas;
 	
 public:
