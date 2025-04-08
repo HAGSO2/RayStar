@@ -6,8 +6,7 @@ using namespace std;
 
 #define salto 10
 
-
-class ColaCasillas{
+struct ModeloCola{
     //Donde float es el peso del elemento en el montículo
     //Donde int es la posición del array de posiciones
     vector<pair<int,float>> monticulo;
@@ -17,6 +16,15 @@ class ColaCasillas{
     //Cada vez que la posición cambie, hay que cambiarla de aquí
     vector<int> posiciones;
     //cuando esto esté funcionando, para mayor eficiencia esto podría ser un array
+    ModeloCola(int);
+
+    string ToString();
+};
+
+
+class ColaCasillas{
+protected:
+    ModeloCola corazon;
     int ultimo;
 public:
     ColaCasillas(int t);
@@ -28,8 +36,8 @@ public:
     int Cambiar(int ind, float w);
     int MirarMínimo();
     string ToString();
-private:
+protected:
     void Alargar();
-    int Flotar(int i);
-    int Hundir(int i);
+    virtual int Flotar(int i);
+    virtual int Hundir(int i);
 };

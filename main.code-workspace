@@ -15,7 +15,8 @@
 			"string": "cpp",
 			"vector": "cpp",
 			"random": "cpp",
-			"string_view": "cpp"
+			"string_view": "cpp",
+			"chrono": "cpp"
 		},
 		"makefile.configureOnOpen": true,
 		"makefile.makefilePath": "./Makefile",

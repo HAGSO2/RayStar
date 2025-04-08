@@ -2,35 +2,52 @@
 #include <raylib.h>
 using namespace std;
 
-ColaCasillas::ColaCasillas(int max):ultimo{1}, monticulo{vector<pair<int,float>>(salto)}, posiciones{vector<int>(max+1,-1)}{}
+ModeloCola::ModeloCola(int max): monticulo{vector<pair<int,float>>(salto)}, posiciones{vector<int>(max+1,-1)}{};
+
+string ModeloCola::ToString(){
+    string mensaje;
+    for(int i = 0; i < monticulo.size(); i++){
+        pair<int,float> elem = monticulo[i];
+        mensaje.push_back('[');
+        mensaje.append(to_string(elem.first));
+        mensaje.push_back('|');
+        mensaje.append(to_string(elem.second));
+        mensaje.push_back(']');
+    }
+}
+
+ColaCasillas::ColaCasillas(int max):ultimo{1}, 
+corazon{ModeloCola(max)}
+//monticulo{vector<pair<int,float>>(salto)}, posiciones{vector<int>(max+1,-1)}
+{};
 
 void ColaCasillas::Añadir(int elem, float w){
-    if((int)monticulo.size() == ultimo+1)
+    if((int)corazon.monticulo.size() == ultimo+1)
         Alargar();
-    monticulo[ultimo] = pair<int,float>(elem,w);
-    posiciones[elem] = Flotar(ultimo);
+    corazon.monticulo[ultimo] = pair<int,float>(elem,w);
+    corazon.posiciones[elem] = Flotar(ultimo);
     TraceLog(LOG_DEBUG, "BUM!");
     ultimo++;
 };
 
 void ColaCasillas::Alargar(){
-    vector<pair<int,float>> aux = vector<pair<int,float>>(monticulo.size()+salto);
-    for(int i = 0; i < (int)monticulo.size(); i++){
-        aux[i] = monticulo[i];
+    vector<pair<int,float>> aux = vector<pair<int,float>>(corazon.monticulo.size()+salto);
+    for(int i = 0; i < (int)corazon.monticulo.size(); i++){
+        aux[i] = corazon.monticulo[i];
     }
-    monticulo = aux;
+    corazon.monticulo = aux;
 };
 
 void ColaCasillas::Eliminar(int elem){
-    monticulo[elem] = monticulo[ultimo];
+    corazon.monticulo[elem] = corazon.monticulo[ultimo];
     ultimo--;
     Hundir(1);
 
 };
 
 int ColaCasillas::Cambiar(int ind, float w){
-    float antiguo = monticulo[ind].second;
-    monticulo[ind].second = w;
+    float antiguo = corazon.monticulo[ind].second;
+    corazon.monticulo[ind].second = w;
     if(antiguo > w){
         return Flotar(ind);
     }
@@ -45,13 +62,13 @@ int ColaCasillas::Hundir(int i){
         return i;
     else{
         int hijo = i*2;
-        if(hijo+1 < ultimo && monticulo[hijo].second > monticulo[hijo+1].second)
+        if(hijo+1 < ultimo && corazon.monticulo[hijo].second > corazon.monticulo[hijo+1].second)
             hijo++;
-        if(monticulo[hijo].second > monticulo[i].second){
-            posiciones[monticulo[hijo].second] = i;
-            pair<int,float> aux = monticulo[hijo];
-            monticulo[hijo] = monticulo[i];
-            monticulo[i] = aux;
+        if(corazon.monticulo[hijo].second > corazon.monticulo[i].second){
+            corazon.posiciones[corazon.monticulo[hijo].second] = i;
+            pair<int,float> aux = corazon.monticulo[hijo];
+            corazon.monticulo[hijo] = corazon.monticulo[i];
+            corazon.monticulo[i] = aux;
             return Hundir(hijo);
         }
         
@@ -67,11 +84,11 @@ int ColaCasillas::Flotar(int i){
     if(i == 1){
         return 1;
     }
-    else if(monticulo[padre].second > monticulo[i].second){
-        posiciones[monticulo[padre].second] = i;
-        pair<int,float> aux = monticulo[padre];
-        monticulo[padre] = monticulo[i];
-        monticulo[i] = aux;
+    else if(corazon.monticulo[padre].second > corazon.monticulo[i].second){
+        corazon.posiciones[corazon.monticulo[padre].second] = i;
+        pair<int,float> aux = corazon.monticulo[padre];
+        corazon.monticulo[padre] = corazon.monticulo[i];
+        corazon.monticulo[i] = aux;
         return Flotar(padre);
     }
     else{
@@ -82,12 +99,12 @@ int ColaCasillas::Flotar(int i){
 
 string ColaCasillas::ToString(){
     string queue = "Montículo: \n";
-    for(int i = 0; i < monticulo.size(); i++){
-        queue.append( to_string(monticulo[i].first) + "|" + to_string(monticulo[i].second) + "\n");
+    for(int i = 0; i < corazon.monticulo.size(); i++){
+        queue.append( to_string(corazon.monticulo[i].first) + "|" + to_string(corazon.monticulo[i].second) + "\n");
     }
     queue.append("Posiciones: \n");
-    for(int i = 0; i < posiciones.size(); i++){
-        queue.append( to_string(i) + "|" + to_string(posiciones[i]) + "\n");
+    for(int i = 0; i < corazon.posiciones.size(); i++){
+        queue.append( to_string(i) + "|" + to_string(corazon.posiciones[i]) + "\n");
     }
     return queue;
 }
