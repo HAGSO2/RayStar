@@ -14,7 +14,7 @@ void ActualizaEscena(void* ptr){
     objeto->EliminaElemento();
 
     //Finalmente actualizar
-    //objeto->ActualizaActores();
+    objeto->ActualizaActores();
 
     objeto->RessetText();
 
@@ -22,6 +22,8 @@ void ActualizaEscena(void* ptr){
     //TraceLog(LOG_DEBUG, cola.c_str());
 
 };
+
+#pragma region Elemet managment
 
 void EsDecrementable::InsertaElemento(){
     InsertaElemento(alltext[0].c_str(), atoi(alltext[3].c_str()));
@@ -71,10 +73,14 @@ void EsDecrementable::RessetText(){
     }
     
 };
-//Si el compilador falla, quitar el const de aquí
-void EsDecrementable::ActualizaActores(const vector<ModeloCola*>& vect){
-    for(int i = 0; i < size(vect); i++){
-        FijaNumeroActores(size(vect[i]->monticulo));
+
+#pragma endregion
+
+#pragma region Actor managment
+void EsDecrementable::ActualizaActores(){
+    vector<ModeloCola*> vect = {cola.DevuelveActual()};
+    for(int i = 0; i < sizeof(vect); i++){
+        FijaNumeroActores(sizeof(vect[i]->monticulo));
         FijaTextoActores(vect[i]->SplitString());
         WaitTime(velocidad);
     } 
@@ -110,8 +116,9 @@ void EsDecrementable::FijaTextoActores(vector<string> nombr)
     }
 };
 
+#pragma region Scene managment
+
 EsDecrementable::EsDecrementable(): Scene(), active{0}, selected{false}, cola{ColaCasillas(CASILLAS)}
-//,casillas{nullptr}
 {
     canvas.AddTextBox(90,0,80,60,alltext[0]);
     canvas.AddTextBox(90,65,80,60,alltext[1]);
@@ -121,10 +128,17 @@ EsDecrementable::EsDecrementable(): Scene(), active{0}, selected{false}, cola{Co
     canvas.AddTextBox(180,65,80,60,alltext[4]);
     
     canvas.AddButton(360,0,80,60,"Actualizar",RED,ActualizaEscena,this);
-    
-    for(int i = 0; i < CASILLAS; i++){
-        casillas[i] = new TextShape{75*i+75,275,50,50,"",BLACK};
-    };
+    for(int i = 0; i < 3; i++){//3x8 = 24
+        for(int j = 0; j < 8; j++){
+            casillas[j+i*8] = new TextShape{75*j+75,220 + i*75,50,50,"",BLACK};
+        }
+    }
+    casillas[24] = new TextShape{75,220+3*75,50,50,"",BLACK};
+    casillas[25] = new TextShape{75+75,220+3*75,50,50,"",BLACK};
+    casillas[26] = new TextShape{75+75*2,220 + 3*75,50,50,"",BLACK};
+    // for(int i = 0; i < CASILLAS; i++){
+    //     casillas[i] = new TextShape{75*i+75,275,50,50,"",BLACK};
+    // };
     //TraceLog(LOG_DEBUG, DevuelveCola().c_str());
 };
 
@@ -148,6 +162,8 @@ void EsDecrementable::OnMouseDown(){
 }
 
 void EsDecrementable::OnKeyPressed(KeyboardKey k){
+
+    
     if(k != KEY_NULL){
         // TraceLog(LOG_DEBUG, "Decrementable: %c, %d",(char)k,k);
         if(!selected && k == KEY_BACKSPACE)
@@ -156,4 +172,6 @@ void EsDecrementable::OnKeyPressed(KeyboardKey k){
             canvas.UpdateKeyboard(k);
     }
     
-}
+};
+
+#pragma endregion

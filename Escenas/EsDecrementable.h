@@ -36,7 +36,7 @@ class EsDecrementable : public Scene{
 
     //Cada modelo cola, es un paso que deben seguir los actores
 
-    void ActualizaActores(const vector<ModeloCola*>& vect);
+    void ActualizaActores();
 
     string DevuelveCola() {return cola.ToString();}
 
