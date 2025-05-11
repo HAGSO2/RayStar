@@ -1,7 +1,7 @@
 Insertar:
 A 15
 B 27
-C 18
+C 17
 D 32
 E 28
 

@@ -22,7 +22,6 @@ void Gameplay::InitScene()
     }
 
     nodes[ENTRANCE_Y][ENTRANCE_X].type = ENTRANCE;
-    nodes[ENTRANCE_Y][ENTRANCE_X].visited = true;
     cells[ENTRANCE_Y][ENTRANCE_X]->ChangeColor(ENTRANCE_COLOR);
 
     nodes[END_Y][END_X].type = EXIT;
