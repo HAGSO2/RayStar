@@ -1,5 +1,9 @@
 #pragma once
 #include <string>
+#include <raylib.h>
+
+#define CELL_X 10
+#define CELL_Y 6
 
 enum CellType{
     DEFAULT = 0,
@@ -13,6 +17,7 @@ enum CellType{
 
 struct Node{
     CellType type;
+    Vector2 position;
     int index;
     float F;
     int G;

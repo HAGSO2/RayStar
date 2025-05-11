@@ -2,20 +2,24 @@
 #include <vector>
 #include "ColaCasillas.h"
 #include "../Escenas/Adicional.h"
+#include "raylib.h"
 
 using namespace std;
 
+
 class AStar{
-    int steps;
+    int steps = 0; 
+    Vector2 currentPosition;
     vector<Node> open;
     vector<Node> closed;
     ColaCasillas cola;
-    Node *&tabletop[][];
+    Node (&tabletop)[CELL_Y][CELL_X];
     public:
-    AStar();
-    vector<Node> Pathfinding();
+    AStar(Node (&tabletop)[CELL_Y][CELL_X]);
+    vector<Node> Pathfinding(Vector2 s, Vector2 t);
 
     private:
     void Step();
+    //Añade a la lista opened los nodos colindantes
     void CalcNeightbours();
 };

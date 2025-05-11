@@ -5,8 +5,6 @@
 
 #pragma once
 #pragma region Definitions
-#define CELL_X 10
-#define CELL_Y 6
 #define WORLD_X_OFFSET 75.0f
 #define WORLD_Y_OFFSET 75.0f
 #define CELL_SIZE 50

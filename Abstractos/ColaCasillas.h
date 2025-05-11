@@ -36,6 +36,7 @@ public:
     void Eliminar(int elem);
     void Cambiar(int ind, float w);
     int MirarMínimo();
+    void EliminaMínimo();
     ModeloCola* DevuelveActual() {return &corazon;}
     string ToString();
 protected:

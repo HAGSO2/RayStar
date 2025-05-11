@@ -2,6 +2,7 @@
 #include <raylib.h>
 using namespace std;
 
+#pragma region Modelo
 ModeloCola::ModeloCola(int max): monticulo{vector<pair<int,float>>(salto)}, posiciones{vector<int>(max+1,-1)}{};
 
 string ModeloCola::ToString(){
@@ -26,7 +27,10 @@ vector<string> ModeloCola::SplitString(){
     }
     return mensaje;
 }
+#pragma endregion
 
+
+#pragma region Cola Casillas
 ColaCasillas::ColaCasillas(int max):ultimo{1}, 
 corazon{ModeloCola(max)}
 //monticulo{vector<pair<int,float>>(salto)}, posiciones{vector<int>(max+1,-1)}
@@ -71,6 +75,22 @@ void ColaCasillas::Cambiar(int elem, float w){
     }
 };
 
+int ColaCasillas::MirarMínimo(){return corazon.monticulo[1].first;};
+void ColaCasillas::EliminaMínimo(){Eliminar(1);};
+
+string ColaCasillas::ToString(){
+    string queue = "Montículo: \n";
+    for(int i = 1; i < corazon.monticulo.size(); i++){
+        queue.append( to_string(corazon.monticulo[i].first) + "|" + to_string(corazon.monticulo[i].second) + "\n");
+    }
+    queue.append("\nPosiciones: \n");
+    for(int i = 0; i < corazon.posiciones.size(); i++){
+        queue.append( to_string(i) + "|" + to_string(corazon.posiciones[i]) + "\n");
+    }
+    return queue;
+}
+
+#pragma region Cola interno
 int ColaCasillas::Hundir(int i){
     if(i == ultimo){
         return i;
@@ -118,15 +138,5 @@ int ColaCasillas::Flotar(int i){
     }
     
 };
-
-string ColaCasillas::ToString(){
-    string queue = "Montículo: \n";
-    for(int i = 1; i < corazon.monticulo.size(); i++){
-        queue.append( to_string(corazon.monticulo[i].first) + "|" + to_string(corazon.monticulo[i].second) + "\n");
-    }
-    queue.append("\nPosiciones: \n");
-    for(int i = 0; i < corazon.posiciones.size(); i++){
-        queue.append( to_string(i) + "|" + to_string(corazon.posiciones[i]) + "\n");
-    }
-    return queue;
-}
+#pragma endregion
+#pragma endregion
