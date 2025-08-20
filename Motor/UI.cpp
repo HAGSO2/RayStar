@@ -95,7 +95,7 @@ void TextBox::UpdateKeyboard(KeyboardKey k){
     //bool shift = IsKeyDown(KEY_LEFT_SHIFT) || IsKeyDown(KEY_RIGHT_SHIFT);
     if(seleccionado && (
     (KEY_A <= k && k <= KEY_Z) || 
-    (KEY_0 <= k && KEY_9 <= k) ||
+    (KEY_ZERO <= k && KEY_NINE <= k) ||
     (KEY_KP_0 <= k && k <= KEY_KP_9)))
     {
         //TraceLog(LOG_ALL,"%d",(int)k);

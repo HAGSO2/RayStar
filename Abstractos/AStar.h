@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-#include "ColaCasillas.h"
+#include "ColaNodes.h"
 #include "../Escenas/Adicional.h"
 #include <raylib.h>
 #include <raymath.h>
@@ -14,7 +14,7 @@ class AStar{
     Node* currentPosition;
     vector<Node*> open;
     vector<Node*> closed;
-    ColaCasillas<Node*> cola;
+    ColaNodes cola;
     Node (&tabletop)[CELL_Y][CELL_X];
     public:
     AStar(Node (&tabletop)[CELL_Y][CELL_X]);

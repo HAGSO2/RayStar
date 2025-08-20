@@ -2,7 +2,7 @@
 
 
 
-AStar::AStar(Node (&tabl)[CELL_Y][CELL_X]): tabletop{tabl}, cola{ColaCasillas<Node*>(CELL_X*CELL_Y)}, 
+AStar::AStar(Node (&tabl)[CELL_Y][CELL_X]): tabletop{tabl}, cola{ColaNodes(CELL_X*CELL_Y)}, 
 steps{0},currentPosition{nullptr},  open{vector<Node*>()}, closed{vector<Node*>()}
 {};
 
