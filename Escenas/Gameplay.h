@@ -1,6 +1,7 @@
 #pragma once
 #include "../Motor/Scene.h"
 #include "../Motor/GameObject.h"
+#include "../Abstractos/AStar.h"
 #include "Adicional.h"
 
 #pragma once
@@ -21,6 +22,7 @@
 class Gameplay : public Scene{
     Node nodes[CELL_Y][CELL_X];
     Sprite* cells[CELL_Y][CELL_X];
+    AStar estrella;
 
 public:
     Gameplay();
@@ -30,4 +32,9 @@ public:
 	void UnloadScreen() {};
     void OnMouseDown();
     void OnKeyPressed(KeyboardKey);
+
+    void TodoACero();
+    void EmpiezaBusqueda();
+    void SoloUnPaso() {};
+    
 };

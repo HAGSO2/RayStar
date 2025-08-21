@@ -11,10 +11,11 @@ vector<Node*> AStar::Pathfinding(Position2 source, Position2 target){
     closed = vector<Node*>();
 
     currentPosition = tabletop[source.j,source.i];
-    open.push_back(currentPosition);
+    closed.push_back(currentPosition);
 
-    while (currentPosition->position.j != target.j && currentPosition->position.i != target.i)
+    while (currentPosition->position.j != target.j || currentPosition->position.i != target.i)
     {
+        TraceLog(LOG_ALL,"Paso");
         /* code */
         Step(target);
         steps++;
