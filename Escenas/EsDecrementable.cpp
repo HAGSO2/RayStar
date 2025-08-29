@@ -122,7 +122,7 @@ EsDecrementable::EsDecrementable(): Scene(), active{0}, selected{false}, cola{Co
     canvas.AddButton(360,0,80,60,"Actualizar",RED,ActualizaEscena,this);
     for(int i = 0; i < 3; i++){//3x8 = 24
         for(int j = 0; j < 8; j++){
-            casillas[j+i*8] = new TextShape{75*j+75,220 + i*75,50,50,"",GRAY};
+            casillas[j+i*8] = new TextShape{(float)75*j+75,(float)220 + i*75,50,50,"",GRAY};
         }
     }
     casillas[24] = new TextShape{75,220+3*75,50,50,"",BLACK};
