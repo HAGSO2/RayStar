@@ -1,6 +1,6 @@
 #pragma once
 #include "Scenes/Adicional.h"
-#include "Scenes/Scene.h"
+#include "ProgramFlow/Scene.h"
 #include "Containers/ColaCasillas.h"
 #include "EngineObjects/GameObject.h"
 
@@ -19,12 +19,12 @@ class EsDecrementable : public Scene{
     bool selected;
     public:
     EsDecrementable();
-    void InitScene() {finishScreen = UNKNOWN;};
+    void InitScene() override {finishScreen = UNKNOWN;};
 	void UpdateScreen() override;
-	void DrawScreen();
-	void UnloadScreen() {};
-    void OnMouseDown();
-    void OnKeyPressed(KeyboardKey);
+	void DrawScreen() override;
+	void UnloadScreen() override {};
+    void OnMouseDown() override;
+    void OnKeyPressed(KeyboardKey) override;
 
     // int ReturnInt(){return 1;};
 

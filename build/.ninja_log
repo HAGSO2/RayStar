@@ -10,3 +10,13 @@
 3	1335	1777222117765616051	game/CMakeFiles/game.dir/src/Containers/ColaCasillas.cpp.o	8c37ac4b0cc906ce
 3	1451	1777222117765779512	game/CMakeFiles/game.dir/src/Containers/ColaNodes.cpp.o	4a6b662836c9add
 3	915	1777222190330212064	game/CMakeFiles/game.dir/src/Containers/AStar.cpp.o	50b0325a2f26b910
+3	691	1777222682386552108	game/CMakeFiles/game.dir/src/Scenes/EsDecrementable.cpp.o	c981775816af4cab
+3	676	1777222715220188136	game/CMakeFiles/game.dir/src/Scenes/EsDecrementable.cpp.o	c981775816af4cab
+3	646	1777222727454449578	game/CMakeFiles/game.dir/src/Scenes/EsDecrementable.cpp.o	c981775816af4cab
+4	707	1777222762194839474	game/CMakeFiles/game.dir/src/Scenes/Tittle.cpp.o	f89d214d14b98f71
+3	804	1777222762192731834	game/CMakeFiles/game.dir/src/main.cpp.o	2cffa7ced9a7c94b
+4	953	1777222762193731793	game/CMakeFiles/game.dir/src/Scenes/Gameplay.cpp.o	526c271c6f8a3388
+953	1109	1777222763142692257	bin/game	23d7a890baf363d1
+1	895	1777222770633393303	game/CMakeFiles/game.dir/src/main.cpp.o	2cffa7ced9a7c94b
+1	988	1777222770634264922	game/CMakeFiles/game.dir/src/Scenes/Gameplay.cpp.o	526c271c6f8a3388
+988	1184	1777222771620355617	bin/game	23d7a890baf363d1

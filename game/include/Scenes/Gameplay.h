@@ -1,5 +1,5 @@
 #pragma once
-#include "Scenes/Scene.h"
+#include "ProgramFlow/Scene.h"
 #include "EngineObjects/GameObject.h"
 #include "Containers/AStar.h"
 #include "Scenes/Adicional.h"
@@ -26,12 +26,12 @@ class Gameplay : public Scene{
 
 public:
     Gameplay();
-    void InitScene();
+    void InitScene() override;
 	void UpdateScreen() override;
-	void DrawScreen();
-	void UnloadScreen() {};
-    void OnMouseDown();
-    void OnKeyPressed(KeyboardKey);
+	void DrawScreen() override;
+	void UnloadScreen() override {};
+    void OnMouseDown() override;
+    void OnKeyPressed(KeyboardKey) override;
 
     void TodoACero();
     void EmpiezaBusqueda();

@@ -1,5 +1,5 @@
 #pragma once
-#include "Scenes/Scene.h"
+#include "ProgramFlow/Scene.h"
 
 class Tittle : public Scene {
 	int framesCounter;
@@ -8,11 +8,11 @@ class Tittle : public Scene {
 	
 public:
 	Tittle(Font f);
-	void InitScene() {finishScreen = UNKNOWN;};
+	void InitScene() override {finishScreen = UNKNOWN;};
 	void UpdateScreen() override;
-	void DrawScreen();
-	void UnloadScreen() {finishScreen = UNKNOWN;};
-	void OnMouseDown();
-	void OnKeyPressed(KeyboardKey) {};
+	void DrawScreen() override;
+	void UnloadScreen() override {finishScreen = UNKNOWN;};
+	void OnMouseDown() override;
+	void OnKeyPressed(KeyboardKey) override {};
 	private:
 };
