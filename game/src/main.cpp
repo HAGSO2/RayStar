@@ -75,9 +75,9 @@ static void InitStarters() {
 }
 
 static void LoadResources() {
-    font = LoadFont("resources/mecha.png");
-    music = LoadMusicStream("resources/ambient.ogg");
-    fxCoin = LoadSound("resources/coin.wav");
+    font = LoadFont("assets/fonts/mecha.png");
+    music = LoadMusicStream("assets/sounds/ambient.ogg");
+    fxCoin = LoadSound("assets/sounds/coin.wav");
 }
 
 static void UpdateDrawFrame() {

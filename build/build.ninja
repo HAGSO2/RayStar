@@ -289,7 +289,7 @@ build bin/game: CXX_EXECUTABLE_LINKER__game_Debug game/CMakeFiles/game.dir/src/m
   LINK_FLAGS = -Xlinker --dependency-file=game/CMakeFiles/game.dir/link.d
   LINK_LIBRARIES = engine/libengine.a  /usr/lib/libraylib.so.6.0.0  -lm
   OBJECT_DIR = game/CMakeFiles/game.dir
-  POST_BUILD = :
+  POST_BUILD = cd /home/angel/Documentos/GitHub/RayEstrella/build/game && /usr/bin/cmake -E copy_directory /home/angel/Documentos/GitHub/RayEstrella/assets /home/angel/Documentos/GitHub/RayEstrella/build/bin/assets
   PRE_LINK = :
   TARGET_FILE = bin/game
   TARGET_PDB = game.dbg
