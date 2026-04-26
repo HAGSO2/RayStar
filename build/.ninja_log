@@ -1,0 +1,12 @@
+# ninja log v7
+3	149	1777221705364138717	engine/CMakeFiles/engine.dir/src/Application.cpp.o	dd7d2fc28ff7e230
+1	387	1777221747430709326	engine/CMakeFiles/engine.dir/src/GameObject.cpp.o	c0fdbfc87072d947
+3	164	1777221800053790186	game/CMakeFiles/game.dir/src/Containers/ColaCasillasCustom.cpp.o	3b790cdcb20ce6f0
+1	615	1777221875736858056	engine/CMakeFiles/engine.dir/src/Scene.cpp.o	eca66218f2fd9a
+1	650	1777221875738295120	engine/CMakeFiles/engine.dir/src/UI.cpp.o	2167a068f0375f7e
+4	210	1777222019941301502	game/CMakeFiles/game.dir/src/Containers/DebugColaCasillas.cpp.o	edf147186d1b72c6
+1	216	1777222019937216291	engine/libengine.a	c2e6d4f489b9dde0
+3	689	1777222019940139666	game/CMakeFiles/game.dir/src/Scenes/Adicional.cpp.o	4eab4bf035d895a7
+3	1335	1777222117765616051	game/CMakeFiles/game.dir/src/Containers/ColaCasillas.cpp.o	8c37ac4b0cc906ce
+3	1451	1777222117765779512	game/CMakeFiles/game.dir/src/Containers/ColaNodes.cpp.o	4a6b662836c9add
+3	915	1777222190330212064	game/CMakeFiles/game.dir/src/Containers/AStar.cpp.o	50b0325a2f26b910
