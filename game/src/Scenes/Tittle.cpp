@@ -8,11 +8,11 @@ void ToDecrementable(void* ptr){
     ((Tittle*)ptr)->ChangeScene(DECREMENTABLE);
 };
 
-Tittle::Tittle(Font f) : font{ f } 
+Tittle::Tittle(Font f, int w, int h) : font{ f }, screenWidth{ w }, screenHeight{ h }
 {
     canvas = UI();
-    canvas.AddButton(screenWidth/2,screenHeight/2,80,60, "Gameplay", WHITE, ToGameplay, this);
-    canvas.AddButton(screenWidth/2,screenHeight/2 + 70,100,60, "Cola decrementable", WHITE, ToDecrementable, this);
+    //canvas.AddButton(screenWidth/2,screenHeight/2,80,60, "Gameplay", WHITE, ToGameplay, this);
+    //canvas.AddButton(screenWidth/2,screenHeight/2 + 70,100,60, "Cola decrementable", WHITE, ToDecrementable, this);
     // canvas.AddButton(screenWidth/2,screenHeight/2-70,80,60, "Decrementable", WHITE,{});
     
 };

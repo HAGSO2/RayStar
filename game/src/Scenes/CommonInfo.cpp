@@ -1,4 +1,4 @@
-#include "Scenes/Adicional.h"
+#include "CommonInfo.h"
 
 Position2::Position2(int ind,int indj): i{ind}, j{indj}{};
 

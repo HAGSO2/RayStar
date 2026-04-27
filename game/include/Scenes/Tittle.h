@@ -5,9 +5,11 @@ class Tittle : public Scene {
 	int framesCounter;
 	Font font;
 	int click;
+	int screenWidth;
+	int screenHeight;
 	
 public:
-	Tittle(Font f);
+	Tittle(Font f, int w, int h);
 	void InitScene() override {finishScreen = UNKNOWN;};
 	void UpdateScreen() override;
 	void DrawScreen() override;

@@ -2,7 +2,6 @@
 #include <raylib.h>
 #include <vector>
 #include <string>
-#include "Misc/CommonInfo.h"
 
 /*Tengo que sacar gameScreen del botón y hacerlo genérico*/
 
@@ -25,7 +24,7 @@ class UI{ //Canvas
     public:
     UI();
     void AddButton(float x, float y, float width, float height, char* s, Color c, void (*Func)(void*), void* miptr);
-    void AddButtonScene(float x, float y, float width, float height, char* s, Color c, void (*Func)(GameScreen & variable), GameScreen &meptr);
+    //void AddButtonScene(float x, float y, float width, float height, char* s, Color c, void (*Func)(GameScreen & variable), GameScreen &meptr);
     void AddTextBox(float x, float y, float width, float height, string& reftxt);
     void Draw();
     void UpdateScreen(Vector2);

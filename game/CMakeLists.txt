@@ -1,14 +1,14 @@
 add_executable(game
     src/main.cpp
-    src/Scenes/Adicional.cpp
-    src/Scenes/EsDecrementable.cpp
-    src/Scenes/Gameplay.cpp
+    src/Game.cpp
+    src/Scenes/Logo.cpp
     src/Scenes/Tittle.cpp
-    src/Containers/AStar.cpp
+    src/Scenes/Gameplay.cpp
+    src/Scenes/EsDecrementable.cpp
     src/Containers/ColaCasillas.cpp
-    src/Containers/ColaCasillasCustom.cpp
     src/Containers/ColaNodes.cpp
     src/Containers/DebugColaCasillas.cpp
+    src/Containers/AStar.cpp
 )
 
 # Copy assets to the output directory after building the game

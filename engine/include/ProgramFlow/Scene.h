@@ -1,10 +1,14 @@
 #pragma once
 #include <raylib.h>
-#include "Misc/CommonInfo.h"
 #include "EngineObjects/UI.h"
 
-    const int screenWidth = 800;
-    const int screenHeight = 600;
+enum GameScreen {
+	UNKNOWN = -1,
+	LOGO = 0,
+	TITTLE = 1,
+	GAMEPLAY = 2,
+    DECREMENTABLE = 3
+};
 
 
 class Scene {
@@ -29,30 +33,4 @@ public:
 private:
 	void ManageInterruptions();
 	
-};
-
-class Logo : public Scene {
-	int framesCounter;
-
-	int logoPositionX;
-	int logoPositionY;
-
-	int lettersCount;
-
-	int topSideRecWidth;
-	int leftSideRecHeight;
-
-	int bottomSideRecWidth;
-	int rightSideRecHeight;
-
-	int state;
-	float alpha;
-public:
-	Logo();
-	void InitScene();
-	void UpdateScreen() override;
-	void DrawScreen();
-	void UnloadScreen() {};
-	void OnMouseDown() {};
-	void OnKeyPressed(KeyboardKey) {};
 };

@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 #include <string>
-#include "Scenes/Adicional.h"
+#include "CommonInfo.h"
 
 using namespace std;
 
